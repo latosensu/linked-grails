@@ -16,7 +16,7 @@ class PessoaSpec extends Specification {
     }
 
     void "test something"() {
-        expect:"Que verdadeiro seja verdadeiro!"
+        expect: "Que verdadeiro seja verdadeiro!"
         true == true
     }
 
@@ -26,5 +26,16 @@ class PessoaSpec extends Specification {
 
         and: "O tamanho da lista deve ser 0"
         Pessoa.list().size() == 0
+    }
+
+    void "Listar pessoas em banco vazio retorna lista vazia usando when-then"() {
+        when: "Lista as pessoas em um banco vazio, o retorno será uma lista vazia"
+        List<Pessoa> pessoas = Pessoa.list()
+
+        then: "A lista deve ser vazia"
+        pessoas.empty
+
+        and: "Deve ter tamanho O"
+        pessoas.size() == 0
     }
 }
