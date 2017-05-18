@@ -50,4 +50,21 @@ class PessoaSpec extends Specification {
         then: "A lista contém as duas pessoas"
         pessoas.containsAll(pessoa1, pessoa2)
     }
+
+    void "Validar nomes de pessoas só aceita nomes com menos de 10 caracteres"() {
+        when: "Cria uma nova pessoa"
+        Pessoa pessoa = new Pessoa(nome: nomeAvaliado)
+
+        and: "Valida seu nome"
+        def resultadoObtido = pessoa.validate(['nome'])
+
+        then: "O resultado esperado tem que ser igual o obtido"
+        resultadoObtido == resultadoEsperado
+
+        where:
+        nomeAvaliado  || resultadoEsperado
+        "A"           || true
+        "1234567890"  || true
+        "12345678901" || false
+    }
 }
