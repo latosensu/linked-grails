@@ -23,5 +23,8 @@ class PessoaSpec extends Specification {
     void "Listar pessoas em banco vazio retorna lista vazia"() {
         expect: "Ao listar pessoas em um banco vazio, o retorno será uma lista vazia"
         Pessoa.list() == []
+
+        and: "O tamanho da lista deve ser 0"
+        Pessoa.list().size() == 0
     }
 }
