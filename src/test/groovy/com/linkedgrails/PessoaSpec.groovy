@@ -2,6 +2,7 @@ package com.linkedgrails
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
@@ -52,6 +53,24 @@ class PessoaSpec extends Specification {
     }
 
     void "Validar nomes de pessoas só aceita nomes com menos de 10 caracteres"() {
+        when: "Cria uma nova pessoa"
+        Pessoa pessoa = new Pessoa(nome: nomeAvaliado)
+
+        and: "Valida seu nome"
+        def resultadoObtido = pessoa.validate(['nome'])
+
+        then: "O resultado esperado tem que ser igual o obtido"
+        resultadoObtido == resultadoEsperado
+
+        where:
+        nomeAvaliado  || resultadoEsperado
+        "A"           || true
+        "1234567890"  || true
+        "12345678901" || false
+    }
+
+    @Unroll
+    void "Validar nome #nomeAvaliado retorna resultado #resultadoEsperado"() {
         when: "Cria uma nova pessoa"
         Pessoa pessoa = new Pessoa(nome: nomeAvaliado)
 
