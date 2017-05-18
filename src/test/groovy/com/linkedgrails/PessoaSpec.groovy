@@ -38,4 +38,20 @@ class PessoaSpec extends Specification {
         and: "Deve ter tamanho O"
         pessoas.size() == 0
     }
+
+    void "Listar pessoas em banco com 2 pessoas cadastradas retorna uma lista com as duas pessoas"() {
+        setup: "Cadastrar duas pessoas"
+        Pessoa pessoa1 = new Pessoa(
+                dataNascimento: new Date(), estadoCivil: "Solteiro", idade: 18, nome: "João"
+        ).save()
+        Pessoa pessoa2 = new Pessoa(
+                dataNascimento: new Date(), estadoCivil: "Solteiro", idade: 40, nome: "Pedro"
+        ).save()
+
+        when: "Lista as pessoas do banco"
+        def pessoas = Pessoa.list()
+
+        then: "A lista contém as duas pessoas"
+        pessoas.containsAll(pessoa1, pessoa2)
+    }
 }
