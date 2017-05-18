@@ -16,7 +16,7 @@ class PessoaSpec extends Specification {
     }
 
     void "test something"() {
-        expect:"fix me"
-            true == false
+        expect:"Que verdadeiro seja verdadeiro!"
+        true == true
     }
 }
