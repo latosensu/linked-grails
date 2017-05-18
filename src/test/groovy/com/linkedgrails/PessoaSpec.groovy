@@ -41,12 +41,8 @@ class PessoaSpec extends Specification {
 
     void "Listar pessoas em banco com 2 pessoas cadastradas retorna uma lista com as duas pessoas"() {
         setup: "Cadastrar duas pessoas"
-        Pessoa pessoa1 = new Pessoa(
-                dataNascimento: new Date(), estadoCivil: "Solteiro", idade: 18, nome: "João"
-        ).save()
-        Pessoa pessoa2 = new Pessoa(
-                dataNascimento: new Date(), estadoCivil: "Solteiro", idade: 40, nome: "Pedro"
-        ).save()
+        Pessoa pessoa1 = new Pessoa().save(validate: false)
+        Pessoa pessoa2 = new Pessoa().save(validate: false)
 
         when: "Lista as pessoas do banco"
         def pessoas = Pessoa.list()
