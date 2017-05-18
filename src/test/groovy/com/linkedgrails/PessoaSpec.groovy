@@ -19,4 +19,9 @@ class PessoaSpec extends Specification {
         expect:"Que verdadeiro seja verdadeiro!"
         true == true
     }
+
+    void "Listar pessoas em banco vazio retorna lista vazia"() {
+        expect: "Ao listar pessoas em um banco vazio, o retorno será uma lista vazia"
+        Pessoa.list() == []
+    }
 }
