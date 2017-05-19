@@ -5,6 +5,6 @@ import grails.converters.JSON
 class PerfilController {
 
     def meuPerfil(Pessoa pessoa) {
-        render pessoa.nome
+        render pessoa as JSON
     }
 }
