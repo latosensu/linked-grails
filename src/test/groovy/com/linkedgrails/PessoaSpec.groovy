@@ -70,20 +70,18 @@ class PessoaSpec extends Specification {
     }
 
     @Unroll
-    void "Validar nome #nomeAvaliado retorna resultado #resultadoEsperado"() {
+    void "Validar nome #nomeAvaliado retorna resultado #resultadoFormatado"() {
         when: "Cria uma nova pessoa"
         Pessoa pessoa = new Pessoa(nome: nomeAvaliado)
-
         and: "Valida seu nome"
         def resultadoObtido = pessoa.validate(['nome'])
-
         then: "O resultado esperado tem que ser igual o obtido"
         resultadoObtido == resultadoEsperado
-
         where:
         nomeAvaliado  || resultadoEsperado
         "A"           || true
         "1234567890"  || true
         "12345678901" || false
+        resultadoFormatado = resultadoEsperado?"válido":"inválido"
     }
 }
