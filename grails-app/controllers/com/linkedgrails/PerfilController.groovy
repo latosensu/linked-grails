@@ -1,10 +1,10 @@
 package com.linkedgrails
 
-import grails.converters.JSON
+import grails.converters.XML
 
 class PerfilController {
 
     def meuPerfil(Pessoa pessoa) {
-        render pessoa as JSON
+        render pessoa as XML
     }
 }
