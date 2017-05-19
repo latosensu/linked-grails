@@ -11,7 +11,7 @@ class UrlMappings {
             }
         }
 
-        "/meuPerfil/$id"(
+        "/meuPerfil/$id(.$format)?"(
                 controller: 'perfil',
                 action: 'meuPerfil'
         )
